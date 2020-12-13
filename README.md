@@ -1,4 +1,4 @@
-#'sixadmin' and 'sixadmin-extra' core collections ports
+## 'sixadmin' and 'sixadmin-extra' core collections ports
 NOTE: the git address is changed.
 
 You can get a readonly copy via the command:
