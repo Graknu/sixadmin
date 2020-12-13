@@ -1,0 +1,30 @@
+makedepends=(rinutils talloc)
+
+description="Fast, feature-rich, modular, and scalable radius server"
+
+packager="Yaolinux Teams"
+maintainer="Graknu"
+
+name=freeradius
+version=3.0.21
+
+
+source=(ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.tar.gz)
+
+unset MAKEFLAGS
+
+prepare(){
+	cd $name-server-$version 
+	./configure --prefix=/usr \
+	  --sbindir=/usr/bin \
+	  --sysconfdir=/etc \
+	  --libdir=/usr/lib/freeradius \
+	  --localstatedir=/var
+}
+
+build() {
+	cd $name-server-$version
+
+	make -j1
+	make DESTDIR=$PKG install
+}

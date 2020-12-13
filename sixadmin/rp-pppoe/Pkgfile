@@ -1,0 +1,20 @@
+description="RP-PPPoE is a free PPPoE client, relay and server for Linux"
+
+packager="Yaolinux Team"
+maintainer="graknu"
+
+name=rp-pppoe
+version=3.14
+
+source=(https://dianne.skoll.ca/projects/rp-pppoe/download/rp-pppoe-$version.tar.gz)
+
+prepare() {
+	cd $name-$version/src
+	./configure
+}
+
+build() {
+	cd $name-$version/src
+	make
+	make DESTDIR=$PKG install
+} 
