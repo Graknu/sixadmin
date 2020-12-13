@@ -1,0 +1,27 @@
+makedepends=(net-snmp git cmake pcre lua kernel-lts.devel)
+
+description="a better cd encoder"
+
+packager="Yaolinux Team"
+maintainer="graknu"
+
+name=accel-ppp
+version=1.0
+
+source=()
+
+prepare() {
+	git clone https://github.com/accel-ppp/accel-ppp.git accel-ppp-code
+	mkdir -pv accel-ppp-code/build
+	cd accel-ppp-code/build
+	
+	cmake -DBUILD_IPOE_DRIVER=TRUE -DBUILD_VLAN_MON_DRIVER=TRUE -DCMAKE_INSTALL_PREFIX=/usr -DKDIR=/usr/src/linux-4.19/ -DLUA=TRUE ..
+
+}
+
+build() {
+
+	cd accel-ppp-code/build
+	make
+	make DESTDIR=$PKG install
+} 
