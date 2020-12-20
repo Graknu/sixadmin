@@ -1,0 +1,26 @@
+makedepends=()
+
+description="Library for including a Cisco-like command-line interface into other software"
+
+packager="Yaolinux Team"
+maintainer="graknu"
+
+name=libcli
+version=1.10.4
+
+source=(https://github.com/dparrish/libcli/archive/V${version}.tar.gz)
+
+prepare() {
+
+	sed -i 's/-Werror//' $name-$version/Makefile
+
+}
+
+build() {
+	cd $name-$version
+
+	make
+
+	make DESTDIR=$PKG PREFIX=/usr install
+	
+} 
