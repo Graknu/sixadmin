@@ -1,0 +1,20 @@
+description="ppp is an open source package which implements the Point-to-Point Protocol"
+
+packager="Yaolinux Team"
+maintainer="graknu"
+
+name=ppp
+version=2.4.8
+
+source=(https://download.samba.org/pub/ppp/$name-$version.tar.gz)
+
+prepare() {
+	cd $name-$version
+	./configure
+}
+
+build() {
+	cd $name-$version
+	make
+	make DESTDIR=$PKG install
+} 
