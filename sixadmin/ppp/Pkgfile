@@ -7,14 +7,3 @@ name=ppp
 version=2.4.8
 
 source=(https://download.samba.org/pub/ppp/$name-$version.tar.gz)
-
-prepare() {
-	cd $name-$version
-	./configure
-}
-
-build() {
-	cd $name-$version
-	make
-	make DESTDIR=$PKG install
-} 
